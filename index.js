@@ -10,5 +10,4 @@ conectarDB();
 // Rutas de la app
 app.use('/api/usuarios', require('./routes/usuarios'));
 
-app.get('/', (req, res) => res.send('API NODE SEND BACKEND!'))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
