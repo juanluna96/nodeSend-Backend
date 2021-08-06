@@ -1,0 +1,20 @@
+{
+    "name": "nodesend-backend",
+    "version": "1.0.0",
+    "description": "Proyecto NodeSend",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon ./index.js",
+        "start": "node ./index.js"
+    },
+    "author": "Juan Diego Luna",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "mongoose": "^5.13.5"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.12"
+    }
+}
