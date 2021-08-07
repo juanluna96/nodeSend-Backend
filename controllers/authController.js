@@ -6,6 +6,11 @@ require('dotenv').config({ path: 'variables.env' });
 
 exports.autenticarUsuario = async (req, res, next) => {
     // Revisar si hay errores
+    const errores = validationResult(req);
+
+    if (!errores.isEmpty()) {
+        return res.status(400).json({ errores: errores.array() });
+    }
 
     // Buscar el usuario para ver si esta registrado
     const { email, password } = req.body;
