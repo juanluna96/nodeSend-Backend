@@ -62,12 +62,14 @@ exports.obtenerEnlace = async (req, res, next) => {
     res.json({ archivo: enlace.nombre });
 
     // Si las descargas son iguales a 1 - Borrar la entrada y borrar el archivo
-    const { descargas } = enlace;
+    const { descargas, nombre } = enlace;
 
     if (descargas === 1) {
         // Eliminar el archivo
+        req.archivo = nombre;
 
         // Eliminar la entrada de la bd
+        await enlace.remove().exec();
         next();
     } else {
         // Si las descargas son mayores a 1 - Restar 1
