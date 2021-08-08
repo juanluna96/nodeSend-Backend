@@ -69,7 +69,7 @@ exports.obtenerEnlace = async (req, res, next) => {
         req.archivo = nombre;
 
         // Eliminar la entrada de la bd
-        await enlace.remove().exec();
+        await Enlace.findOneAndRemove({ url });
         next();
     } else {
         // Si las descargas son mayores a 1 - Restar 1
