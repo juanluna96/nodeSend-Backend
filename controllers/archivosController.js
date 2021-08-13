@@ -32,10 +32,11 @@ exports.subirArchivo = async (req, res, next) => {
 }
 
 exports.eliminarArchivo = async (req, res, next) => {
+    const archivo = req.archivo ? req.archivo : req.body.archivo;
+
     try {
-        fs.unlinkSync(__dirname + `/../uploads/${req.archivo}`);
+        fs.unlinkSync(__dirname + `/../uploads/${archivo}`);
     } catch (error) {
         console.log(error);
     }
 }
-
