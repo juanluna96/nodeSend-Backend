@@ -44,7 +44,6 @@ exports.nuevoEnlace = async (req, res, next) => {
     } catch (error) {
         console.log(error);
     }
-    console.log(req.body);
 }
 
 // Verifica si el enlace tiene password o no
@@ -59,7 +58,7 @@ exports.tienePassword = async (req, res, next) => {
     }
 
     if (enlace.password) {
-        res.json({ password: true, enlace: enlace.url });
+        res.json({ password: true, enlace: enlace.url, archivo: enlace.nombre });
     }
 
     next();
@@ -77,9 +76,28 @@ exports.obtenerEnlace = async (req, res, next) => {
     }
 
     // Si el enlace existe
-    res.json({ archivo: enlace.nombre });
+    res.json({ archivo: enlace.nombre, password: false });
 
     next();
+}
+
+// Obtener todos los enlaces
+exports.verificarPassword = async (req, res, next) => {
+    const { url } = req.params;
+    const { password } = req.body;
+
+    // Verificar si existe el enlace
+    const enlace = await Enlace.findOne({ url });
+
+    // Consultar por el enlace
+
+    // Verificar el password y autenticar el usuario
+    if (bcrypt.compareSync(password, enlace.password)) {
+        // Permitir al usuario descargar el archivo
+        next();
+    } else {
+        return res.status(401).json({ message: 'Contraseña incorrecta' });
+    }
 }
 
 // Obtener todos los enlaces
