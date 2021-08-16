@@ -12,7 +12,7 @@ exports.nuevoEnlace = async (req, res, next) => {
     }
 
     // Crear un objeto de Enlace
-    const { nombre_original,nombre } = req.body;
+    const { nombre_original, nombre } = req.body;
     const enlace = new Enlace();
     enlace.url = shortid.generate();
     enlace.nombre = nombre;
@@ -75,5 +75,15 @@ exports.obtenerEnlace = async (req, res, next) => {
         // Si las descargas son mayores a 1 - Restar 1
         enlace.descargas--;
         await enlace.save();
+    }
+}
+
+// Obtener todos los enlaces
+exports.listadoEnlaces = async (req, res) => {
+    try {
+        const enlaces = await Enlace.find({}).select('url -_id');
+        return res.json({ enlaces });
+    } catch (error) {
+        console.log(error);
     }
 }

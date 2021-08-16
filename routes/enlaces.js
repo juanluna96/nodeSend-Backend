@@ -13,6 +13,9 @@ router.post("/",
     auth,
     enlacesController.nuevoEnlace
 );
+
+router.get("/", enlacesController.listadoEnlaces);
+
 router.get("/:url",
     enlacesController.obtenerEnlace,
     archivosController.eliminarArchivo
