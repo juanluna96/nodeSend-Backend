@@ -18,6 +18,8 @@ app.use(cors(opcionesCors));
 // Habilitar leer los valores de un body
 app.use(express.json());
 
+// Habilitar carpeta publica
+app.use('/uploads', express.static('uploads'));
 
 // Rutas de la app
 app.use('/api/usuarios', require('./routes/usuarios'));
