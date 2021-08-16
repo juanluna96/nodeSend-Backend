@@ -17,6 +17,7 @@ router.post("/",
 router.get("/", enlacesController.listadoEnlaces);
 
 router.get("/:url",
+    enlacesController.tienePassword,
     enlacesController.obtenerEnlace
 );
 
