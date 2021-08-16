@@ -4,7 +4,7 @@ const archivosController = require("../controllers/archivosController");
 const auth = require("../middleware/auth");
 
 router.post("/", auth, archivosController.subirArchivo);
-router.get("/:archivo", archivosController.descargar);
+router.get("/:archivo", archivosController.descargar, archivosController.eliminarArchivo);
 router.delete("/:id", archivosController.eliminarArchivo);
 
 
