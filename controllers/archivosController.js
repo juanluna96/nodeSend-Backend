@@ -43,7 +43,7 @@ exports.eliminarArchivo = async (req, res, next) => {
 }
 
 // Descarga un archivo
-exports.descargar = async (req, res) => {
+exports.descargar = async (req, res, next) => {
     const { archivo } = req.params;
 
     // Obtiene el enlace
